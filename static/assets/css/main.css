@@ -33,6 +33,14 @@ main {
     align-items: center;
 
     position: relative;
+
+    opacity: 0;
+
+    transition: opacity 0.15s ease;
+}
+
+.statementHolder.active{
+    opacity: 1;
 }
 
 .statementHolder > .statementBackground {

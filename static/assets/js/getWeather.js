@@ -24,4 +24,12 @@ clientLocation.getCurrentPosition((position) => {
 
 function showResults(result) {
     statement.querySelector('h1').innerText = result.name;
+
+    let resultBG = new Image();
+    resultBG.src = `/assets/images/planet backgrounds/${result.name}.png`;
+
+    resultBG.addEventListener('load', () => {
+        backgroundImage.src = resultBG.src;
+        statement.parentNode.classList.add('active');
+    })
 }

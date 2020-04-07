@@ -7,14 +7,21 @@ const port = process.env.PORT || 66;
 app.use(express.static(`${__dirname}/static`));
 
 app.get('/api/getPlanet/', (req, res) => {
-    let temp = parseInt(req.query.temp);
-    let lIndex = parseInt(req.query.lIndex);
-    let humid = parseInt(req.query.humid);
-    let clouds = parseInt(req.query.clouds);
-    let rain = parseInt(req.query.rain);
-    let type = req.query.type;
 
-    res.send(findSimilarPlanet(temp, clouds, lIndex, humid, rain, type, planetData.planets));
+    axios.get(`http://www.7timer.info/bin/api.pl?lon=${req.query.lon}&lat=${req.query.lat}&product=civil&output=json`)
+    .then(result => {
+        result = result.data.dataseries[0];
+
+        let temp = result.temp2m;
+        let lIndex = result.lifted_index;
+        let humid = parseInt(result.rh2m.replace('%', ''));
+        let clouds = result.cloudcover;
+        let rain = result.prec_amount;
+        let type = result.weather;
+    
+        res.send(findSimilarPlanet(temp, clouds, lIndex, humid, rain, type, planetData.planets));
+
+    })
 })
 
 app.listen(port);

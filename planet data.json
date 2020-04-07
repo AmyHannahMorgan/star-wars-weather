@@ -118,8 +118,8 @@
         },
         {
             "name": "Tatooine",
-            "tempLow": 20,
-            "tempHigh": 33,
+            "tempLow": 25,
+            "tempHigh": 35,
             "cloudLow": 0,
             "cloudHigh": 3,
             "lIndexLow": -4,

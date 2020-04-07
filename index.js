@@ -48,3 +48,17 @@ function findPlanet(planetName, planets) {
 
     return found;
 }
+
+function compileValues(lowValueName, highValueName, planets) {
+    let values = []
+
+    planets.forEach(planet => {
+        let pair = [];
+        pair.push(planet[lowValueName]);
+        pair.push(planet[highValueName]);
+
+        values.push(pair);
+    });
+
+    return values
+}

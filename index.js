@@ -12,7 +12,7 @@ app.get('/api/getPlanet/', (req, res) => {
     let clouds = parseInt(req.query.clouds);
     let rain = parseInt(req.query.rain);
     let type = req.query.type;
-    
+
     findSimilarPlanet(temp, clouds, lIndex, humid, rain, type, planetData.planets);
 })
 
@@ -29,9 +29,7 @@ function findSimilarPlanet(temp, cloud, lIndex, humid, rain, type, planets) {
         };
 
         planetLikelyhood.push(obj);
-    });
 
-    planets.forEach(planet => {
         if(planet.weatherTypes.includes(type)) {
             findPlanet(planet.name, planetLikelyhood).likelyhood += 1;
             console.log(findPlanet(planet.name, planetLikelyhood).likelyhood);

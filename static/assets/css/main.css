@@ -84,6 +84,8 @@ main {
 
 .statementHolder > .statement > * {
     font-family: 'sf_distant_galaxyregular';
+    color: #ffe81f;
+    text-shadow: 2px 2px 5px black;
 }
 /* IDs */
 

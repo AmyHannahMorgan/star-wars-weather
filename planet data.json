@@ -56,7 +56,7 @@
             "name": "Dagobah",
             "tempLow": 10,
             "tempHigh": 25,
-            "cloudLow": 0,
+            "cloudLow": 4,
             "cloudHigh": 9,
             "lIndexLow": -10,
             "lIndexHigh": 2,

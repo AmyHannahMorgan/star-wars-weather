@@ -140,31 +140,6 @@
                 "rainday",
                 "rainnight"
             ]
-        },
-        {
-            "name": "Tatooine",
-            "tempLow": 20,
-            "tempHigh": 33,
-            "cloudLow": 0,
-            "cloudHigh": 3,
-            "lIndexLow": -4,
-            "lIndexHigh": 15,
-            "humidLow": 0,
-            "humidHigh": 15,
-            "rainLow": 0,
-            "rainHigh": 3,
-            "weatherTypes": [
-                "clearday",
-                "clearnight",
-                "pcloudyday",
-                "pcloudynight",
-                "mcloudyday",
-                "mcloudynight",
-                "cloudyday",
-                "cloudynight",
-                "rainday",
-                "rainnight"
-            ]
         }
     ]
 }

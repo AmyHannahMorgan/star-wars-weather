@@ -7,12 +7,14 @@
 
 }
 /* animations */
-@keyframes spin {
+@keyframes floatIn {
     from {
-        transform: rotate(0deg);
+        opacity: 0;
+        transform: translateY(50%);
     }
     to {
-        transform: rotate(360deg);
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 /* tags */
@@ -54,12 +56,30 @@ main {
 
     height: 100vh;
     max-height: 100vh;
+
+    opacity: 0;
+
+    transition: opacity ease 0.15s;
 }
 
 .statementHolder > .statement {
     width: 100%;
 
     margin: 0 12px;
+
+    display: none;
+    opacity: 0;
+
+    animation: floatIn 0.5s ease forwards;
+    animation-delay: 0.5s;
+}
+
+.statementHolder.active > .statementBackground > #backgroundImage {
+    opacity: 1;
+}
+
+.statementHolder.active > .statement {
+    display: block;
 }
 
 .statementHolder > .statement > * {

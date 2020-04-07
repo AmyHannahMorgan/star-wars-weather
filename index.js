@@ -13,7 +13,7 @@ app.get('/api/getPlanet/', (req, res) => {
     let rain = parseInt(req.query.rain);
     let type = req.query.type;
 
-    findSimilarPlanet(temp, clouds, lIndex, humid, rain, type, planetData.planets);
+    res.send(findSimilarPlanet(temp, clouds, lIndex, humid, rain, type, planetData.planets));
 })
 
 app.listen(port);
@@ -55,7 +55,17 @@ function findSimilarPlanet(temp, cloud, lIndex, humid, rain, type, planets) {
     if(raining[0] !== null) planetLikelyhood[raining[0]].likelyhood += 1;
     if(raining[1] !== null) planetLikelyhood[raining[1]].likelyhood += 1;
 
-    console.log({planetLikelyhood});
+    let highestLikelyhood = null;
+    let likelyPlanetI = null;
+
+    planetLikelyhood.forEach((planet, index) => {
+        if(planet.likelyhood > highestLikelyhood || highestLikelyhood === null) {
+            highestLikelyhood = planet.likelyhood;
+            likelyPlanetI = index;
+        }
+    });
+
+    return planetLikelyhood[likelyPlanetI];
 }
 
 function findPlanet(planetName, planets) {

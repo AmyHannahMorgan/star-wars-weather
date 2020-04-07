@@ -38,19 +38,24 @@ function findSimilarPlanet(temp, cloud, lIndex, humid, rain, type, planets) {
         else return false;
     });
 
-    let temps = compileValues("tempLow", "tempHigh", planetLikelyhood);
-    let clouds = compileValues("cloudLow", "cloudHigh", planetLikelyhood);
-    let lIndexes = compileValues("lIndexLow", "lIndexHigh", planetLikelyhood);
-    let humidity = compileValues("humidLow", "humidHigh", planetLikelyhood);
-    let raining = compileValues("rainLow", "rainHigh", planetLikelyhood);
+    let temps = compairPairs(compileValues("tempLow", "tempHigh", planetLikelyhood), temp);
+    let clouds = compairPairs(compileValues("cloudLow", "cloudHigh", planetLikelyhood), cloud);
+    let lIndexes = compairPairs(compileValues("lIndexLow", "lIndexHigh", planetLikelyhood), lIndex);
+    let humidity = compairPairs(compileValues("humidLow", "humidHigh", planetLikelyhood), humid);
+    let raining = compairPairs(compileValues("rainLow", "rainHigh", planetLikelyhood), rain);
 
-    let tempSmallestRange = 100;
-    let tempSmallestRangeI = null;
-    let tempClosestMedian = 100;
-    let tempClosestMedianI = null;
-    temps.forEach((pair, index) => {
+    planetLikelyhood[temps[0]].likelyhood += 1;
+    planetLikelyhood[temps[1]].likelyhood += 1;
+    planetLikelyhood[clouds[0]].likelyhood += 1;
+    planetLikelyhood[clouds[1]].likelyhood += 1;
+    planetLikelyhood[lIndexes[0]].likelyhood += 1;
+    planetLikelyhood[lIndexes[1]].likelyhood += 1;
+    planetLikelyhood[humidity[0]].likelyhood += 1;
+    planetLikelyhood[humidity[1]].likelyhood += 1;
+    planetLikelyhood[raining[0]].likelyhood += 1;
+    planetLikelyhood[raining[1]].likelyhood += 1;
 
-    });
+    console.log({planetLikelyhood});
 }
 
 function findPlanet(planetName, planets) {

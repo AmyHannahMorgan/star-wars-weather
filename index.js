@@ -24,9 +24,18 @@ function findSimilarPlanet(temp, cloud, lIndex, humid, rain, type, planets) {
     let planetLikelyhood = [...planets];
     planets.forEach(planet => {
         if(planet.weatherTypes.includes(type)) {
-            findPlanet(planet.name, planetLikelyhood).likelyhood = 1;
-            console.log(findPlanet(planet.name, planetLikelyhood).likelyhood);
+            planet.likelyhood = 1;
         }
+        else {
+            planet.likelyhood = 0;
+        }
+    });
+
+    planetLikelyhood = planetLikelyhood.filter((planet, i, array) => {
+        if(planet.likelyhood > 0) {
+            return true;
+        }
+        else return false;
     });
 }
 

@@ -16,3 +16,32 @@ app.get('/api/getPlanet/', (req, res) => {
 app.listen(port);
 
 console.log(`listening on port: ${port}`);
+
+function findSimilarPlanet(temp, cloud, lIndex, humid, rain, type, planets) {
+    let planetLikelyhood = []
+    planets.forEach(planet => {
+        let obj = {
+            name: planet.name,
+            likelyhood: 0
+        };
+
+        planetLikelyhood.push(obj);
+    });
+
+    planets.forEach(planet => {
+        if(planet.weatherTypes.includes(type)) {
+            findPlanet(planet.name, planetLikelyhood).likelyhood += 1;
+            console.log(findPlanet(planet.name, planetLikelyhood).likelyhood);
+        }
+    });
+}
+
+function findPlanet(planetName, planets) {
+    planets.forEach(planet => {
+        if(planet.name === planetName) {
+            return planet
+        }
+    });
+
+    return null;
+}

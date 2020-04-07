@@ -4,7 +4,7 @@ const apiAddress = `${window.location.origin}/api`;
 const clientLocation = navigator.geolocation;
 
 clientLocation.getCurrentPosition((position) => {
-    fetch(`http://www.7timer.info/bin/api.pl?lon=${position.coords.longitude}&lat=${position.coords.latitude}&product=civil&output=json`)
+    fetch(`https://www.7timer.info/bin/api.pl?lon=${position.coords.longitude}&lat=${position.coords.latitude}&product=civil&output=json`)
     .then((res) => {
         res.json().then(result => {
             result = result.dataseries[0];

@@ -1,4 +1,5 @@
 const express = require('express');
+const planetData = require('./planet data.json')
 const app = express();
 const port = process.env.PORT || 66;
 

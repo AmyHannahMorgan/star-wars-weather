@@ -4,16 +4,9 @@ const apiAddress = `${window.location.origin}/api`;
 const clientLocation = navigator.geolocation;
 
 clientLocation.getCurrentPosition((position) => {
-    fetch(`https://www.7timer.info/bin/api.pl?lon=${position.coords.longitude}&lat=${position.coords.latitude}&product=civil&output=json`)
-    .then((res) => {
-        res.json().then(result => {
-            result = result.dataseries[0];
-            console.log(result);
-            fetch(`${apiAddress}/getPlanet/?temp=${result.temp2m}&lIndex=${result.lifted_index}&humid=${parseInt(result.rh2m.replace('%', ''))}&clouds=${result.cloudcover}&rain=${result.prec_ammount}&type=${result.weather}`)
-            .then(response => {
-                response.json().then(final => showResults(final));
-            })
-        });
+    fetch(`${apiAddress}/getPlanet/?lat${position.coords.longitude}&lat=${position.coords.latitude}`)
+    .then(response => {
+        response.json().then(final => showResults(final));
     })
     .catch((err) => {
         console.log(err);

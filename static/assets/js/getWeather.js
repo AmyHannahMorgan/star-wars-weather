@@ -11,7 +11,7 @@ clientLocation.getCurrentPosition((position) => {
             console.log(result);
             fetch(`${apiAddress}/getPlanet/?temp=${result.temp2m}&lIndex=${result.lifted_index}&humid=${parseInt(result.rh2m.replace('%', ''))}&clouds=${result.cloudcover}&rain=${result.prec_ammount}&type=${result.weather}`)
             .then(response => {
-                response.json().then(final => console.log(final));
+                response.json().then(final => showResults(final));
             })
         });
     })
@@ -21,3 +21,7 @@ clientLocation.getCurrentPosition((position) => {
 }, (err) => {
     console.log(err)
 });
+
+function showResults(result) {
+    statement.querySelector('h1').innerText = result.name;
+}

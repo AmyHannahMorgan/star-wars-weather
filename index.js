@@ -9,6 +9,8 @@ app.get('/api/getPlanet/', (req, res) => {
     let lIndex = req.query.lIndex;
     let humid = req.query.humid;
     let clouds = req.query.clouds;
+    let rain = req.query.clouds;
+    let type = req.query.type;
 })
 
 app.listen(port);

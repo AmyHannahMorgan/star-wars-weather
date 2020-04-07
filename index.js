@@ -21,17 +21,10 @@ app.listen(port);
 console.log(`listening on port: ${port}`);
 
 function findSimilarPlanet(temp, cloud, lIndex, humid, rain, type, planets) {
-    let planetLikelyhood = []
+    let planetLikelyhood = [...planets];
     planets.forEach(planet => {
-        let obj = {
-            name: planet.name,
-            likelyhood: 0
-        };
-
-        planetLikelyhood.push(obj);
-
         if(planet.weatherTypes.includes(type)) {
-            findPlanet(planet.name, planetLikelyhood).likelyhood += 1;
+            findPlanet(planet.name, planetLikelyhood).likelyhood = 1;
             console.log(findPlanet(planet.name, planetLikelyhood).likelyhood);
         }
     });

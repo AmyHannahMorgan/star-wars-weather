@@ -44,16 +44,16 @@ function findSimilarPlanet(temp, cloud, lIndex, humid, rain, type, planets) {
     let humidity = compairPairs(compileValues("humidLow", "humidHigh", planetLikelyhood), humid);
     let raining = compairPairs(compileValues("rainLow", "rainHigh", planetLikelyhood), rain);
 
-    planetLikelyhood[temps[0]].likelyhood += 1;
-    planetLikelyhood[temps[1]].likelyhood += 1;
-    planetLikelyhood[clouds[0]].likelyhood += 1;
-    planetLikelyhood[clouds[1]].likelyhood += 1;
-    planetLikelyhood[lIndexes[0]].likelyhood += 1;
-    planetLikelyhood[lIndexes[1]].likelyhood += 1;
-    planetLikelyhood[humidity[0]].likelyhood += 1;
-    planetLikelyhood[humidity[1]].likelyhood += 1;
-    planetLikelyhood[raining[0]].likelyhood += 1;
-    planetLikelyhood[raining[1]].likelyhood += 1;
+    if(temps[0] !== null) planetLikelyhood[temps[0]].likelyhood += 1;
+    if(temps[1] !== null) planetLikelyhood[temps[1]].likelyhood += 1;
+    if(clouds[0] !== null) planetLikelyhood[clouds[0]].likelyhood += 1;
+    if(clouds[1] !== null) planetLikelyhood[clouds[1]].likelyhood += 1;
+    if(lIndexes[0] !== null) planetLikelyhood[lIndexes[0]].likelyhood += 1;
+    if(lIndexes[1] !== null) planetLikelyhood[lIndexes[1]].likelyhood += 1;
+    if(humidity[0] !== null) planetLikelyhood[humidity[0]].likelyhood += 1;
+    if(humidity[1] !== null) planetLikelyhood[humidity[1]].likelyhood += 1;
+    if(raining[0] !== null) planetLikelyhood[raining[0]].likelyhood += 1;
+    if(raining[1] !== null) planetLikelyhood[raining[1]].likelyhood += 1;
 
     console.log({planetLikelyhood});
 }
@@ -94,15 +94,18 @@ function compairPairs(pairArray, value) {
         let range = pair[1] - pair[0];
         let median = (pair[0] + pair[1]) / 2;
 
-        if(range < smallestRange || smallestRange === null) {
-            smallestRange = range;
-            smallestRangeI = index;
+        if(value >= pair[0] && value <= pair[1]) {
+            if(range < smallestRange || smallestRange === null) {
+                smallestRange = range;
+                smallestRangeI = index;
+            }
+    
+            if(Math.abs(median - value) < closestMedian || closestMedian === null)  {
+                closestMedian = Math.abs(median - value);
+                closestMedianI = index;
+            }
         }
 
-        if(Math.abs(median - value) < closestMedian || closestMedian === null)  {
-            closestMedian = Math.abs(median - value);
-            closestMedianI = index;
-        }
     });
 
     return [smallestRangeI, closestMedianI];

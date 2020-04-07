@@ -43,6 +43,14 @@ function findSimilarPlanet(temp, cloud, lIndex, humid, rain, type, planets) {
     let lIndexes = compileValues("lIndexLow", "lIndexHigh", planetLikelyhood);
     let humidity = compileValues("humidLow", "humidHigh", planetLikelyhood);
     let raining = compileValues("rainLow", "rainHigh", planetLikelyhood);
+
+    let tempSmallestRange = 100;
+    let tempSmallestRangeI = null;
+    let tempClosestMedian = 100;
+    let tempClosestMedianI = null;
+    temps.forEach((pair, index) => {
+
+    });
 }
 
 function findPlanet(planetName, planets) {
@@ -69,4 +77,28 @@ function compileValues(lowValueName, highValueName, planets) {
     });
 
     return values
+}
+
+function compairPairs(pairArray, value) {
+    let smallestRange = null;
+    let smallestRangeI = null;
+    let closestMedian = null;
+    let closestMedianI = null;
+
+    pairArray.forEach((pair, index) => {
+        let range = pair[1] - pair[0];
+        let median = (pair[0] + pair[1]) / 2;
+
+        if(range < smallestRange || smallestRange === null) {
+            smallestRange = range;
+            smallestRangeI = index;
+        }
+
+        if(Math.abs(median - value) < closestMedian || closestMedian === null)  {
+            closestMedian = Math.abs(median - value);
+            closestMedianI = index;
+        }
+    });
+
+    return [smallestRangeI, closestMedianI];
 }

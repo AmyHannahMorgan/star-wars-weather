@@ -106,6 +106,10 @@ footer > * {
     animation-delay: 1s;
 }
 
+.statementHolder > .locationWeather > .weatherItem {
+    margin: 0 6px;
+}
+
 .statementHolder > .locationWeather > .weatherItem > * {
     font-family: 'Rubik', sans-serif;
     text-align: center;

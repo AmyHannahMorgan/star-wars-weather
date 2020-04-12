@@ -94,11 +94,16 @@ footer > * {
     width: 100%;
     max-width: 100%;
 
-    display: flex;
+    display: none;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
     align-content: center;
+
+    opacity: 0;
+
+    animation: floatIn 0.5s ease forwards;
+    animation-delay: 1s;
 }
 
 .statementHolder > .locationWeather > .weatherItem > * {
@@ -114,6 +119,10 @@ footer > * {
 
 .statementHolder.active > .statement {
     display: block;
+}
+
+.statementHolder.active > .locationWeather {
+    display: flex;
 }
 
 .statementHolder > .statement > * {

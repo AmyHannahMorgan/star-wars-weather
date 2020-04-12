@@ -78,6 +78,12 @@ footer > * {
     transition: opacity ease 0.15s;
 }
 
+.statementHolder > #getWeatherButton {
+    border-color: transparent;
+    border-radius: 12px;
+    background-color: #ffe81f;
+}
+
 .statementHolder > .statement {
     width: 90%;
 

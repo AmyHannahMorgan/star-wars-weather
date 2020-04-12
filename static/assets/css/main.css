@@ -137,3 +137,8 @@ footer > * {
 /* IDs */
 
 /* Media */
+@media only screen and (min-width: 768px) {
+    .statementHolder > .statement {
+        width: 50%;
+    }
+}

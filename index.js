@@ -19,7 +19,17 @@ app.get('/api/getPlanet/', (req, res) => {
         let rain = result.prec_amount;
         let type = result.weather;
     
-        res.send(findSimilarPlanet(temp, clouds, lIndex, humid, rain, type, planetData.planets));
+        res.send({
+            planet: findSimilarPlanet(temp, clouds, lIndex, humid, rain, type, planetData.planets),
+            weather: {
+                temp: temp,
+                liftedIndex: lIndex,
+                humidity: humid,
+                cloudCover: clouds,
+                rainAmount: rain,
+                weather: type
+            }
+        });
 
     })
 })

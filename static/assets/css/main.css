@@ -102,6 +102,7 @@ footer > * {
 }
 
 .statementHolder > .locationWeather > .weatherItem > * {
+    font-family: 'Rubik', sans-serif;
     text-align: center;
     color: #ffe81f;
     text-shadow: 2px 2px 5px black;

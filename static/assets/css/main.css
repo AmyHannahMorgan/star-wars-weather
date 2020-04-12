@@ -55,6 +55,7 @@ footer > * {
     max-height: 100vh;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
@@ -78,7 +79,7 @@ footer > * {
 }
 
 .statementHolder > .statement {
-    width: 100%;
+    width: 90%;
 
     margin: 0 12px;
 
@@ -87,6 +88,23 @@ footer > * {
 
     animation: floatIn 0.5s ease forwards;
     animation-delay: 0.5s;
+}
+
+.statementHolder > .locationWeather {
+    width: 100%;
+    max-width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.statementHolder > .locationWeather > .weatherItem > * {
+    text-align: center;
+    color: #ffe81f;
+    text-shadow: 2px 2px 5px black;
 }
 
 .statementHolder.active > .statementBackground > #backgroundImage {

@@ -1,32 +1,37 @@
+const getWeatherButt = document.querySelector('#getWeatherButton');
 const backgroundImage = document.querySelector('#backgroundImage');
 const statement = document.querySelector('.statement');
 const weatherDisplay = document.querySelector('.locationWeather');
 const apiAddress = `${window.location.origin}/api`;
 const clientLocation = navigator.geolocation;
 
-clientLocation.getCurrentPosition((position) => {
-    fetch(`${apiAddress}/getPlanet/?lon=${position.coords.longitude}&lat=${position.coords.latitude}`)
-    .then(response => {
-        response.json().then(final => showResults(final));
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-},
-error => {
-    if(error.code == 1) {
-        fetch(`${apiAddress}/getPlanet/?lon=51.48&lat=3.17`)
+
+getWeatherButt.addEventListener('click', () => {
+    getWeatherButt.style.display = 'none';
+    clientLocation.getCurrentPosition((position) => {
+        fetch(`${apiAddress}/getPlanet/?lon=${position.coords.longitude}&lat=${position.coords.latitude}`)
         .then(response => {
-            response.json().then(final => {
-                statement.querySelector('h3').innerText = 'Cardiff, it\'s like...';
-                showResults(final)
-            });
+            response.json().then(final => showResults(final));
         })
         .catch((err) => {
             console.log(err);
         });
-    }
-    console.log(error);
+    },
+    error => {
+        if(error.code == 1) {
+            fetch(`${apiAddress}/getPlanet/?lon=51.48&lat=3.17`)
+            .then(response => {
+                response.json().then(final => {
+                    statement.querySelector('h3').innerText = 'Cardiff, it\'s like...';
+                    showResults(final)
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        }
+        console.log(error);
+    });
 });
 
 function showResults(result) {

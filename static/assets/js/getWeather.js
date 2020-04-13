@@ -1,48 +1,17 @@
-const getWeatherButt = document.querySelector('#getWeatherButton');
 const backgroundImage = document.querySelector('#backgroundImage');
 const statement = document.querySelector('.statement');
 const weatherDisplay = document.querySelector('.locationWeather');
 const apiAddress = `${window.location.origin}/api`;
 const clientLocation = navigator.geolocation;
 
-
-getWeatherButt.addEventListener('click', () => {
-    getWeatherButt.style.display = 'none';
-    clientLocation.getCurrentPosition((position) => {
-        fetch(`${apiAddress}/getPlanet/?lon=${position.coords.longitude}&lat=${position.coords.latitude}`)
-        .then(response => {
-            return response.json()
-        })
-        .then(json => showResults(json))
-        .catch((err) => {
-            console.log(err);
-        });
-    },
-    error => {
-        if(error.code == 1) {
-            fetch('https://ipgeolocation.com/?json=1')
-            .then(response => {
-                console.log(response);
-                return response.json()
-            })
-            .then(json => {
-                console.log(json);
-                let coords = json.coords.split(',');
-                return fetch(`${apiAddress}/getPlanet/?lon=${coords[1]}&lat=${coords[0]}`);
-            })
-            .then(response => {
-                return response.json();
-            })
-            .then(final => {
-                showResults(final)
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        }
-        console.log(error);
-    });
-});
+fetch('https://ipgeolocation.com/?json=1')
+.then(response => response.json())
+.then(json => {
+    let coords = json.coords.split(',');
+    return fetch(`${apiAddress}/getPlanet/?lon=${coords[1]}&lat=${coords[0]}`);
+})
+.then(response => response.json())
+.then(json => showResults(json));
 
 function showResults(result) {
     statement.querySelector('h1').innerText = result.planet.name;

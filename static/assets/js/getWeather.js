@@ -1,5 +1,3 @@
-import { json } from "express";
-
 const getWeatherButt = document.querySelector('#getWeatherButton');
 const backgroundImage = document.querySelector('#backgroundImage');
 const statement = document.querySelector('.statement');

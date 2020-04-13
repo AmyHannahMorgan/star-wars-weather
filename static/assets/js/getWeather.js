@@ -1,3 +1,5 @@
+import { json } from "express";
+
 const getWeatherButt = document.querySelector('#getWeatherButton');
 const backgroundImage = document.querySelector('#backgroundImage');
 const statement = document.querySelector('.statement');
@@ -11,8 +13,9 @@ getWeatherButt.addEventListener('click', () => {
     clientLocation.getCurrentPosition((position) => {
         fetch(`${apiAddress}/getPlanet/?lon=${position.coords.longitude}&lat=${position.coords.latitude}`)
         .then(response => {
-            response.json().then(final => showResults(final));
+            return response.json()
         })
+        .then(json => showResults(json))
         .catch((err) => {
             console.log(err);
         });

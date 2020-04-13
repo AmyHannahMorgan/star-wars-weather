@@ -19,12 +19,21 @@ getWeatherButt.addEventListener('click', () => {
     },
     error => {
         if(error.code == 1) {
-            fetch(`${apiAddress}/getPlanet/?lon=51.48&lat=3.17`)
+            fetch('https://ipgeolocation.com/?json=1')
             .then(response => {
-                response.json().then(final => {
-                    statement.querySelector('h3').innerText = 'Cardiff, it\'s like...';
-                    showResults(final)
-                });
+                console.log(response);
+                return response.json()
+            })
+            .then(json => {
+                console.log(json);
+                let coords = json.coords.split(',');
+                return fetch(`${apiAddress}/getPlanet/?lon=${coords[1]}&lat=${coords[0]}`);
+            })
+            .then(response => {
+                return response.json();
+            })
+            .then(final => {
+                showResults(final)
             })
             .catch((err) => {
                 console.log(err);
